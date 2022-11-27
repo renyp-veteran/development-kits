@@ -42,7 +42,7 @@ public class BuilderV2<T> {
     }
 
     public <P1> BuilderV2<T> with(BuilderV2.DInjectConsumer<T, P1> consumer, P1 p1, Predicate<P1> predicate){
-        if(!predicate.test(p1)){
+        if(predicate != null && !predicate.test(p1)){
             throw new RuntimeException(String.format("【%s】参数不符合通用业务规则！", p1));
         }
         Consumer<T> c = instance -> consumer.accept(instance, p1);
